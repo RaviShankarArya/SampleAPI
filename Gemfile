@@ -3,8 +3,8 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.5'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# Rails API modules rest here.
+gem 'rails-api'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -12,30 +12,75 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-gem 'therubyracer',  platforms: :ruby
-
+# gem 'therubyracer',  platforms: :ruby
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
-
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
-gem 'rspec-rails', '~> 3.1.0'
-
+# Database - Postgres Adapter
+gem 'pg'
+# Pagination
+gem "kaminari"
+# State Machine
+gem 'state_machine'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
+# Show Progress bar while runinng a rake tasks which consumes more time
+gem 'ruby-progressbar'
+# Helps to print colored texts to console
+gem "colorize"
 
-# Use unicorn as the app server
-# gem 'unicorn'
+group :development do
+  # For Deployment
+  gem 'capistrano'
+  gem 'capistrano-rails', '~> 1.1.0'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rbenv', github: "capistrano/rbenv"
+  gem "capistrano-sidekiq"
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+  # Productivity & Performance Tools
+  gem "brakeman", :require => false # vulnerability scanner
+  gem "hirb"  # Print Better on Conosle
+  gem "quiet_assets" # Stop displaying asset request on server console
+  gem 'thin' # Better Web Server than Webrick
+  gem "binding_of_caller"
+end
 
-# Use debugger
-# gem 'debugger', group: [:development, :test]
+group :development, :test do
+  gem 'pry-rails' # Beautiful Console
+  gem "factory_girl_rails"
 
+end
+
+group :test do
+  # Factory
+
+  # For rSpec
+  gem 'rspec-rails' # Needed for rake stats to calculate test coverage
+  #gem 'rspec-collection_matchers', '~> 1.0.0'
+  #gem 'rspec-instafail'
+  #gem "shoulda"
+  # gem "rspec-sidekiq" #Needed to test sidekiq jobs
+
+  # For Cucumber
+  gem 'cucumber-rails', :require => false
+  gem 'database_cleaner'
+  #gem 'email_spec'
+  #gem 'cucumber-websteps'
+  #gem 'pickle'
+  #gem 'capybara'
+  #gem 'capybara-email'
+
+
+  # Speedup Tests
+  gem "spork"
+  gem "parallel_tests"
+
+  # For Code Climate - Test Code Coverage
+  # https://codeclimate.com/repos/528da18dc7f3a335fa02e86d/coverage_setup
+  gem 'codeclimate-test-reporter', require: nil
+end
