@@ -13,6 +13,16 @@ module Api
 
       end
 
+      def show
+          @proc_code = Proc.new do
+          @data = SchoolSection.find(params[:id])
+          @success = true
+          @errors = {}
+        end
+
+
+      end
+
     end
   end
 end

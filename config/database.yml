@@ -2,10 +2,10 @@ development:
   adapter: postgresql
   encoding: unicode
   reconnect: false
-  database: sample_development
+  database: samp_development
   pool: 5
   username: postgres
-  password:
+  password: password 
   host: localhost
   port: 5432
 
@@ -16,9 +16,9 @@ test:
   adapter: postgresql
   encoding: unicode
   reconnect: false
-  database: sample_test
+  database: samp_test
   pool: 5
   username: postgres
-  password:
+  password: password 
   host: localhost
   port: 5432
